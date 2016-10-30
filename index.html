@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			body{background: #222;font-family: "微软雅黑";}
+			#battleground{width: 512px;height: 768px;background: url(img/img_bg_level_1.jpg) repeat-y;margin:auto;background-position: 0 0;position: absolute;top: 0px;left: 0;right: 0;bottom:0;z-index: 1;overflow: hidden;}
+			#startBg{width: 512px;height: 768px;background: url(img/logo.jpg);margin:auto;position: absolute;top: 0;left: 0;right: 0;bottom:0;z-index: 3;}
+			#gameOver{width: 512px;height: 768px;background: rgba(0,0,0,0.8);margin:auto;position: absolute;top: 0;left: 0;right: 0;bottom:0;z-index: 2;display: none;overflow: hidden;}
+			#data{width: 512px;height: 768px;margin:auto;position: absolute;top: 0;left: 0;right: 0;bottom:0;z-index: 1;}
+			#bgRed{width: 512px;height: 768px;margin:auto;position: absolute;top: 0;left: 0;right: 0;bottom:0;z-index: 5;display: none;}
+			#start:hover{cursor: pointer;}
+			#scores{float: right;margin: 10px 10px 10px 10px;}
+			#scores img{float: left;width: 20px;vertical-align:top;display: block;margin: 0; padding: 0; border: 0; }
+			#data_middle img{float: right;width: 15px;vertical-align:top;display: block;margin: 0; padding: 0; border: 0; }
+			#Pause{width: 52px;height: 52px;background: url(img/img_ui.png) no-repeat -584px -136px;float: right;position: absolute;display: none;}
+			#data_top{width: 512px;overflow: hidden;}
+			#data_middle{width: 500px;padding-right: 12px;padding-top: 10px; overflow: hidden;}
+			#fScores{padding-left: 12px; overflow: hidden;float: left;width: 200px;}
+			#maxImg{width: 100px;margin-top: 10px;margin-bottom: 10px;}
+			#maxScores img{width: 15px;}
+			#hint{color: #fff;}
+			#overTit{text-align: center;width: 512px;margin: 150px auto 0;}
+			#overTit img{width: 300px;margin: 106px;}
+			#overImg {width: 512px;text-align: center;margin: 50px auto 0;}
+			#overImg img{height: 50px;}
+			#overTitImg_0{display: none;}
+			#overTitImg_1{display: none;}
+			#restart{width: 173px;margin: 80px auto;}
+			#restart:hover{cursor: pointer;}
+			#start{margin: 50px 0 0 166px;width: 180px;}
+			#login{margin: 500px 0 0 145px;}
+			#userName{width: 160px;height: 28px;margin-bottom: 5px;}
+			#pWord{width: 160px;height: 28px;}
+			#userScore{width: 150px;height: 25px;}
+			#btn1{width: 80px;height: 30px;margin: 30px 0 0 10px;font: 16px "微软雅黑";}
+			#consoleGame{width: 80px;height: 30px;margin: 30px 0 0 10px;font: 16px "微软雅黑";display: block;}
+			#noNameTit{color: red;}
+			#loginTit{color: red;}
+			#hpBox{float: left;}
+			#myHP{width: 40px;float: left;margin: 10px 10px 0 0;}
+			#myHpView{height: 10px;width: 100px;border: 2px solid #964a2c;float: left;margin-top: 12px;}
+			#nowHp{height: 10px;width: 100px;background: #ec4f00;}
+			#boss{position: absolute;top: 7px;left: 170px;display: none;}
+			#bossTit{float: left;color: #fff;font-size: 20px;font-weight: bold;font-family: "宋体";}
+			#bossHp{height: 10px;width: 120px;border: 2px solid #964a2c;float: left;margin-top: 5px;margin-left: 5px;}
+			#bossNowHp{height: 10px;width: 120px;background: red;}
+			#Billboard{width: 300px;height:500px; position: absolute;right: 20px;top: 0;bottom: 0;margin: auto; background: url(img/paihang.png) no-repeat center;}
+			#bbList{width: 280px;margin: 160px 10px 0 10px;padding: 0;}
+			#bbList li{list-style: none;width: 280px;margin-left: 10px;height: 30px;}
+			.bb{color: #FE0000;float: left;font-weight: bold;margin-right: 10px;}
+			.bName{float: left;display: block;width: 100px;overflow: hidden;margin-right: 10px;}
+			.fen{float: right;margin-right: 20px;}
+			.sScores{float: right;}
+			.reg{font-size: 12px;}
+			#nameReg{font-size: 12px;}
+			#PassReg{font-size: 12px;}
+		</style>
+	</head>
+	<body>
+		<audio loop="loop" autoplay="autoplay" controls="controls">
+		  	<source src="audio/bgm_kaichangdonghua.mp3" type="audio/mpeg" />
+			Your browser does not support the audio element.
+		</audio>
+		<div id="startBg">
+			<div id="login">
+				账号：
+				<input type="text" name="user" id="userName"/><br />
+				密码：
+				<input type="password" name="pWord" id="pWord"/>
+				<span id="loginTit"></span>
+			</div>
+			<img id="start" src="img/start.png"/>
+		</div>
+		<div id="battleground">
+		</div>
+		<div id="data">
+			<div id="data_top">
+				<div id="Pause"></div>
+				<div id="scores"></div>
+				<div id="fScores">
+					<div id="hpBox">
+						<img id="myHP" src="img/hp_0.png"/>
+						<div id="myHpView">
+							<div id="nowHp"></div>
+						</div>
+					</div>
+					<img id="maxImg" src="img/maxScores.png"/><br />
+					<div id="maxScores"></div>
+				</div>
+			</div>
+			<div id="data_middle"></div>
+			<div id="boss">
+				<div id="bossTit">
+					BOSS
+				</div>
+				<div id="bossHp">
+					<div id="bossNowHp">
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<img id="bgRed" src="img/boooo.png"/>
+		<div id="gameOver">
+			<div id="overTit"><img id="overTitImg_0" src="img/over_0.png"/><img id="overTitImg_1" src="img/over_1.png"/></div>
+			<div id="overImg"></div>
+			<div id="restart">
+				<img src="img/restart.png"/>
+			</div>
+		</div>
+		<div id="hint">
+			<h2>飞机大战v1.0</h2>
+			温馨提示：<br />1.F11 全屏<br />
+			2.空格 暂停 <br />
+			3.浏览器支持：谷歌 火狐<br />
+			<h2>账号注册</h2>
+			账号：<input type="text" name="userScore" id="newName" value="" />
+			<span id="nameReg">
+
+			</span><br />
+			<span class="reg">
+				（请输入2-8位 汉字 用户名）
+			</span><br />
+			密码：<input type="password" id="newPassword" value=""/>
+			<span id="PassReg">
+
+			</span><br />
+			<span class="reg">
+				（请输入6-16位密码，可以数字字母下划线）
+			</span><br />
+			<input type="button" name="btn1" id="btn1" value="注册" /><span id="noNameTit"></span><br />
+			<input type="button" name="" id="consoleGame" value="单机模式" />
+			<h4>公告：</h4>
+			<p>&ensp;&ensp;1.由于某些玩家开挂，官方进行如下处理</p>
+			<p>&ensp;&ensp;&ensp;&ensp;玩家 xxxx 封号365天</p>
+			<p>&ensp;&ensp;2.本游戏仅供学习交流</p>
+		</div>
+		<div id="Billboard">
+			<ul id="bbList">
+				<li><span class="bb">No.1</span> <span class="bName"></span><span class="fen">分</span><span class="sScores">0</span></li>
+				<li><span class="bb">No.2</span> <span class="bName"></span><span class="fen">分</span><span class="sScores">0</span></li>
+				<li><span class="bb">No.3</span> <span class="bName"></span><span class="fen">分</span><span class="sScores">0</span></li>
+				<li><span class="bb">No.4</span> <span class="bName"></span><span class="fen">分</span><span class="sScores">0</span></li>
+				<li><span class="bb">No.5</span> <span class="bName"></span><span class="fen">分</span><span class="sScores">0</span></li>
+				<li><span class="bb">No.6</span> <span class="bName"></span><span class="fen">分</span><span class="sScores">0</span></li>
+				<li><span class="bb">No.7</span> <span class="bName"></span><span class="fen">分</span><span class="sScores">0</span></li>
+				<li><span class="bb">No.8</span> <span class="bName"></span><span class="fen">分</span><span class="sScores">0</span></li>
+				<li><span class="bb">No.9</span> <span class="bName"></span><span class="fen">分</span><span class="sScores">0</span></li>
+				<li><span class="bb">No.10</span> <span class="bName"></span><span class="fen">分</span><span class="sScores">0</span></li>
+			</ul>
+		</div>
+		<script src="js/cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/js-me.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
